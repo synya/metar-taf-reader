@@ -2,7 +2,7 @@ package com.mycompany.metartafreader.model.tokens;
 
 public interface Token {
 
-    boolean canBeDecoded(String token);
+    boolean recognizedAndFetched(String token);
 
     void decode();
 

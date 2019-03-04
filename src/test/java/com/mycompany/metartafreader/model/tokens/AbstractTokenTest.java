@@ -10,11 +10,11 @@ public abstract class AbstractTokenTest {
 
     @Test
     public void decodeEmptyTest() {
-        assertFalse(getToken().canBeDecoded(""));
+        assertFalse(getToken().recognizedAndFetched(""));
     }
 
     @Test(expected = IllegalArgumentException.class)
     public void decodeNullTest() {
-        assertFalse(getToken().canBeDecoded(null));
+        assertFalse(getToken().recognizedAndFetched(null));
     }
 }

@@ -16,7 +16,7 @@ public abstract class AbstractToken implements Token {
 
     protected abstract void runDecode(String token);
 
-    public boolean canBeDecoded(String token) {
+    public boolean recognizedAndFetched(String token) {
         Assert.notNull(token, "token string must not be null");
         Matcher matcher = getMatcher(token);
         if (matcher.find()) {

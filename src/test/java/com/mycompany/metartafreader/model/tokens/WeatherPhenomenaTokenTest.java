@@ -22,8 +22,8 @@ public class WeatherPhenomenaTokenTest extends AbstractTokenTest{
 
     @Test
     public void decodeWeatherPhenomenaTest() {
-        assertThat(weatherPhenomenaToken.canBeDecoded("+TSRA")).isEqualTo(true);
-        assertThat(weatherPhenomenaToken.canBeDecoded("VCFG")).isEqualTo(true);
+        assertThat(weatherPhenomenaToken.recognizedAndFetched("+TSRA")).isEqualTo(true);
+        assertThat(weatherPhenomenaToken.recognizedAndFetched("VCFG")).isEqualTo(true);
         weatherPhenomenaToken.decode();
         assertThat(weatherPhenomenaToken.getPhenomena())
                 .hasSize(5)

@@ -22,7 +22,7 @@ public class RecentWeatherPhenomenaTokenTest extends AbstractTokenTest {
 
     @Test
     public void decodeRecentWeatherPhenomenaTest() {
-        assertThat(recentWeatherPhenomenaToken.canBeDecoded("RE+TSRA")).isEqualTo(true);
+        assertThat(recentWeatherPhenomenaToken.recognizedAndFetched("RE+TSRA")).isEqualTo(true);
         recentWeatherPhenomenaToken.decode();
         assertThat(recentWeatherPhenomenaToken.getPhenomena())
                 .hasSize(3)
