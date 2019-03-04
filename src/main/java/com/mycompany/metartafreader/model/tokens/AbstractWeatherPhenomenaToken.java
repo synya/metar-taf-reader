@@ -7,17 +7,15 @@ public abstract class AbstractWeatherPhenomenaToken extends AbstractToken {
 
     private static final String INTENSITY_GROUP_REGEX = "([+-])";
     private static final String PHENOMENA_GROUP_REGEX = "(VC|MI|BC|PR|DR|BL|SH|TS|FZ|DZ|RA|SN|SG|IC|PL|GR|GS|UP|BR|FG|FU|VA|DU|SA|HZ|PO|SQ|FC|SS|DS)";
-    private static final int INTENSITY_GROUP_INDEX = 1;
-    private static final int PHENOMENA_GROUP_INDEX = 2;
+    private static final int PHENOMENA_GROUP_INDEX = 1;
     static final String PHENOMENA_REGEX = INTENSITY_GROUP_REGEX + "?" + PHENOMENA_GROUP_REGEX + PHENOMENA_GROUP_REGEX + "?" + PHENOMENA_GROUP_REGEX + "?";
 
     private static final Map<String, String> WEATHER_PHENOMENA_DICTIONARY = new HashMap<>();
-    private static final Map<String, String> INTENSITY_DICTIONARY = new HashMap<>();
 
     static {
-        INTENSITY_DICTIONARY.put("+", "heavy");
-        INTENSITY_DICTIONARY.put("-", "light");
-        INTENSITY_DICTIONARY.put(null, "moderate");
+        WEATHER_PHENOMENA_DICTIONARY.put("+", "heavy");
+        WEATHER_PHENOMENA_DICTIONARY.put("-", "light");
+        WEATHER_PHENOMENA_DICTIONARY.put(null, "moderate");
         WEATHER_PHENOMENA_DICTIONARY.put("VC", "in the vicinity of airport");
         WEATHER_PHENOMENA_DICTIONARY.put("BC", "patches");
         WEATHER_PHENOMENA_DICTIONARY.put("BL", "blowing");
@@ -52,23 +50,15 @@ public abstract class AbstractWeatherPhenomenaToken extends AbstractToken {
     }
 
     private List<String> phenomena = new ArrayList<>();
-    private String phenomenaIntensity;
 
     public final List<String> getPhenomena() {
         return phenomena;
-    }
-
-    public final String getPhenomenaIntensity() {
-        return phenomenaIntensity;
     }
 
     @Override
     protected final void runDecode(String token) {
         Matcher matcher = getMatcher(token);
         if (matcher.find()) {
-            if (INTENSITY_DICTIONARY.get(matcher.group(INTENSITY_GROUP_INDEX)) != null) {
-                phenomenaIntensity = INTENSITY_DICTIONARY.get(matcher.group(INTENSITY_GROUP_INDEX));
-            }
             for (int i = PHENOMENA_GROUP_INDEX; i <= matcher.groupCount(); i++) {
                 if ((matcher.group(i) != null) && (WEATHER_PHENOMENA_DICTIONARY.get(matcher.group(i)) != null)) {
                     phenomena.add(WEATHER_PHENOMENA_DICTIONARY.get(matcher.group(i)));

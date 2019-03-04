@@ -24,9 +24,8 @@ public class RecentWeatherPhenomenaTokenTest extends AbstractTokenTest {
     public void decodeRecentWeatherPhenomenaTest() {
         assertThat(recentWeatherPhenomenaToken.canBeDecoded("RE+TSRA")).isEqualTo(true);
         recentWeatherPhenomenaToken.decode();
-        assertThat(recentWeatherPhenomenaToken.getPhenomenaIntensity()).isEqualTo("heavy");
         assertThat(recentWeatherPhenomenaToken.getPhenomena())
-                .hasSize(2)
-                .containsSequence("thunderstorm", "rain");
+                .hasSize(3)
+                .containsSequence("heavy", "thunderstorm", "rain");
     }
 }
