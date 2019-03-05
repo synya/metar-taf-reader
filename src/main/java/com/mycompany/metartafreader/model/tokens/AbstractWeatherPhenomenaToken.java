@@ -46,10 +46,9 @@ public abstract class AbstractWeatherPhenomenaToken extends AbstractToken {
         WEATHER_PHENOMENA_DICTIONARY.put("TS", "thunderstorm");
         WEATHER_PHENOMENA_DICTIONARY.put("VA", "volcanic ash");
         WEATHER_PHENOMENA_DICTIONARY.put("UP", "unknown precipitation");
-        WEATHER_PHENOMENA_DICTIONARY.put("", "");
     }
 
-    private List<String> phenomena = new ArrayList<>();
+    private final List<String> phenomena = new ArrayList<>();
 
     public final List<String> getPhenomena() {
         return phenomena;
