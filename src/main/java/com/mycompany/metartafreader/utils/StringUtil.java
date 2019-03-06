@@ -8,6 +8,12 @@ public final class StringUtil {
     private StringUtil() {
     }
 
+    public static String nullableConverter(String s, Function<String, String> converter) {
+        return Optional.ofNullable(s)
+                .map(converter)
+                .orElse("");
+    }
+
     public static String nullableConverter(String s, Function<String, String> converter, Supplier<String> insteadOfNull) {
         return Optional.ofNullable(s)
                 .map(converter)

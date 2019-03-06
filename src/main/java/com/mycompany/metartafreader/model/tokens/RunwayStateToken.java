@@ -100,7 +100,7 @@ public class RunwayStateToken extends AbstractToken {
         }
     }
 
-    public static class RunwayState {
+    public static final class RunwayState {
         private final String runway;
         private final String deposition;
         private final String depositionDepth;
@@ -108,11 +108,11 @@ public class RunwayStateToken extends AbstractToken {
         private final String frictionFactor;
 
         public RunwayState(String runway, String deposition, String depositionDepth, String contamination, String frictionFactor) {
-            this.runway = StringUtil.nullableConverter(runway, r -> (SPECIAL_DICTIONARY.getOrDefault(r, r.substring(1))), () -> "");
-            this.deposition = StringUtil.nullableConverter(deposition, DEPOSITION_DICTIONARY::get, () -> "");
-            this.depositionDepth = StringUtil.nullableConverter(depositionDepth, dd -> (DEPOSITION_DEPTH_DICTIONARY.getOrDefault(dd, dd + " mm")), () -> "");
-            this.contamination = StringUtil.nullableConverter(contamination, CONTAMINATION_DICTIONARY::get, () -> "");
-            this.frictionFactor = StringUtil.nullableConverter(frictionFactor, ff -> (FRICTION_FACTOR_DICTIONARY.getOrDefault(ff, "friction coefficient 0." + ff)), () -> "");
+            this.runway = StringUtil.nullableConverter(runway, r -> (SPECIAL_DICTIONARY.getOrDefault(r, r.substring(1))));
+            this.deposition = StringUtil.nullableConverter(deposition, DEPOSITION_DICTIONARY::get);
+            this.depositionDepth = StringUtil.nullableConverter(depositionDepth, dd -> (DEPOSITION_DEPTH_DICTIONARY.getOrDefault(dd, dd + " mm")));
+            this.contamination = StringUtil.nullableConverter(contamination, CONTAMINATION_DICTIONARY::get);
+            this.frictionFactor = StringUtil.nullableConverter(frictionFactor, ff -> (FRICTION_FACTOR_DICTIONARY.getOrDefault(ff, "friction coefficient 0." + ff)));
         }
 
         public final String getRunway() {

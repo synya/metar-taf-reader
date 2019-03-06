@@ -61,7 +61,7 @@ public class PressureToken extends AbstractToken {
         }
     }
 
-    public static class Pressure {
+    public static final class Pressure {
         private final String pressure;
         private final String units;
         private final String remark;

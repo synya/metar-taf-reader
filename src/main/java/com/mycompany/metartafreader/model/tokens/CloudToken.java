@@ -59,7 +59,7 @@ public class CloudToken extends AbstractToken {
         }
     }
 
-    public static class Cloud {
+    public static final class Cloud {
 
         private final String type;
         private final String flightLevel;
@@ -67,8 +67,8 @@ public class CloudToken extends AbstractToken {
 
         public Cloud(String type, String flightLevel, String remark) {
             this.type = CLOUDS_DICTIONARY.get(type);
-            this.flightLevel = StringUtil.nullableConverter(flightLevel, fl -> fl.contains("/") ? CLOUDS_DICTIONARY.get(fl) : fl, () -> "");
-            this.remark = StringUtil.nullableConverter(remark, CLOUDS_DICTIONARY::get, () -> "");
+            this.flightLevel = StringUtil.nullableConverter(flightLevel, fl -> fl.contains("/") ? CLOUDS_DICTIONARY.get(fl) : fl);
+            this.remark = StringUtil.nullableConverter(remark, CLOUDS_DICTIONARY::get);
         }
 
         public String getType() {

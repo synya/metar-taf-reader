@@ -19,7 +19,7 @@
     </properties>
 
     <build>
-        <finalName>where-to-go</finalName>
+        <finalName>metar-taf-reader</finalName>
         <defaultGoal>package</defaultGoal>
         <plugins>
             <plugin>

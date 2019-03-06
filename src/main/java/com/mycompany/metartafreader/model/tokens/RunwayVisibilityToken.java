@@ -57,7 +57,7 @@ public class RunwayVisibilityToken extends AbstractToken {
         }
     }
 
-    public static class RunwayVisibility {
+    public static final class RunwayVisibility {
         private final String runway;
         private final String bound;
         private final String distance;
@@ -65,11 +65,11 @@ public class RunwayVisibilityToken extends AbstractToken {
         private final String tendency;
 
         public RunwayVisibility(String runway, String bound, String distance, String unit, String tendency) {
-            this.runway = StringUtil.nullableConverter(runway, r -> r.substring(1), () -> "");
-            this.bound = StringUtil.nullableConverter(bound, RUNWAY_VISIBILITY_DICTIONARY::get, () -> "");
-            this.distance = StringUtil.nullableConverter(distance, d -> d, () -> "");
+            this.runway = StringUtil.nullableConverter(runway, r -> r.substring(1));
+            this.bound = StringUtil.nullableConverter(bound, RUNWAY_VISIBILITY_DICTIONARY::get);
+            this.distance = StringUtil.nullableConverter(distance, d -> d);
             this.unit = StringUtil.nullableConverter(unit, RUNWAY_VISIBILITY_DICTIONARY::get, () -> "meters");
-            this.tendency = StringUtil.nullableConverter(tendency, RUNWAY_VISIBILITY_DICTIONARY::get, () -> "");
+            this.tendency = StringUtil.nullableConverter(tendency, RUNWAY_VISIBILITY_DICTIONARY::get);
         }
 
         public final String getRunway() {
