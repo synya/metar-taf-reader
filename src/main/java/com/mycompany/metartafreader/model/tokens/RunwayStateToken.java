@@ -88,11 +88,9 @@ public class RunwayStateToken extends AbstractToken {
         Matcher matcher = RUNWAY_STATE.matcher(token);
         if (matcher.find()) {
             if (matcher.group("closed") != null) {
-                runwayStates.add(new RunwayState(matcher.group("closed"), null, null,
-                        null, null));
+                runwayStates.add(new RunwayState(matcher.group("closed")));
             } else if (matcher.group("special") != null) {
-                runwayStates.add(new RunwayState(matcher.group("runway"), null, null,
-                        matcher.group("special"), null));
+                runwayStates.add(new RunwayState(matcher.group("runway"), matcher.group("special")));
             } else {
                 runwayStates.add(new RunwayState(matcher.group("runway"), matcher.group("deposition"), matcher.group("depositionDepth"),
                         matcher.group("contamination"), matcher.group("frictionFactor")));
@@ -106,6 +104,14 @@ public class RunwayStateToken extends AbstractToken {
         private final String depositionDepth;
         private final String contamination;
         private final String frictionFactor;
+
+        public RunwayState(String runway) {
+            this(runway, null, null, null, null);
+        }
+
+        public RunwayState(String runway, String contamination) {
+            this(runway, null, null, contamination, null);
+        }
 
         public RunwayState(String runway, String deposition, String depositionDepth, String contamination, String frictionFactor) {
             this.runway = StringUtil.nullableConverter(runway, r -> (SPECIAL_DICTIONARY.getOrDefault(r, r.substring(1))));
