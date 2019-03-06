@@ -15,49 +15,49 @@ public class RunwayStateToken extends AbstractToken {
             "(?<special>(CLRD//)|(//99//)|(//////))))|" +
             "(?<closed>R/SNOCLO)$");
 
-    private static final Map<String, String> DEPOSITION = new HashMap<>();
-    private static final Map<String, String> CONTAMINATION = new HashMap<>();
-    private static final Map<String, String> DEPOSITION_DEPTH = new HashMap<>();
-    private static final Map<String, String> FRICTION_FACTOR = new HashMap<>();
-    private static final Map<String, String> SPECIAL = new HashMap<>();
+    private static final Map<String, String> DEPOSITION_DICTIONARY = new HashMap<>();
+    private static final Map<String, String> CONTAMINATION_DICTIONARY = new HashMap<>();
+    private static final Map<String, String> DEPOSITION_DEPTH_DICTIONARY = new HashMap<>();
+    private static final Map<String, String> FRICTION_FACTOR_DICTIONARY = new HashMap<>();
+    private static final Map<String, String> SPECIAL_DICTIONARY = new HashMap<>();
 
     static {
-        DEPOSITION.put("0", "clear and dry");
-        DEPOSITION.put("1", "damp");
-        DEPOSITION.put("2", "wet or water patches");
-        DEPOSITION.put("3", "rime of frost covered");
-        DEPOSITION.put("4", "dry snow");
-        DEPOSITION.put("5", "wet snow");
-        DEPOSITION.put("6", "slush");
-        DEPOSITION.put("7", "ice");
-        DEPOSITION.put("8", "compacted or rolled snow");
-        DEPOSITION.put("9", "frozen ruts of ridges");
+        DEPOSITION_DICTIONARY.put("0", "clear and dry");
+        DEPOSITION_DICTIONARY.put("1", "damp");
+        DEPOSITION_DICTIONARY.put("2", "wet or water patches");
+        DEPOSITION_DICTIONARY.put("3", "rime of frost covered");
+        DEPOSITION_DICTIONARY.put("4", "dry snow");
+        DEPOSITION_DICTIONARY.put("5", "wet snow");
+        DEPOSITION_DICTIONARY.put("6", "slush");
+        DEPOSITION_DICTIONARY.put("7", "ice");
+        DEPOSITION_DICTIONARY.put("8", "compacted or rolled snow");
+        DEPOSITION_DICTIONARY.put("9", "frozen ruts of ridges");
 
-        CONTAMINATION.put("0", "10% or less covered");
-        CONTAMINATION.put("1", "10% or less covered");
-        CONTAMINATION.put("2", "11% to 25% covered");
-        CONTAMINATION.put("5", "26% to 50% covered");
-        CONTAMINATION.put("9", "51% to 100% covered");
-        CONTAMINATION.put("CLRD//", "runway(s) is(are) cleared");
-        CONTAMINATION.put("//99//", "runway(s) is(are) non-operational due clearing");
-        CONTAMINATION.put("//////", "no information about runway state");
+        CONTAMINATION_DICTIONARY.put("0", "10% or less covered");
+        CONTAMINATION_DICTIONARY.put("1", "10% or less covered");
+        CONTAMINATION_DICTIONARY.put("2", "11% to 25% covered");
+        CONTAMINATION_DICTIONARY.put("5", "26% to 50% covered");
+        CONTAMINATION_DICTIONARY.put("9", "51% to 100% covered");
+        CONTAMINATION_DICTIONARY.put("CLRD//", "runway(s) is(are) cleared");
+        CONTAMINATION_DICTIONARY.put("//99//", "runway(s) is(are) non-operational due clearing");
+        CONTAMINATION_DICTIONARY.put("//////", "no information about runway state");
 
-        DEPOSITION_DEPTH.put("92", "10 cm");
-        DEPOSITION_DEPTH.put("93", "15 cm");
-        DEPOSITION_DEPTH.put("94", "20 cm");
-        DEPOSITION_DEPTH.put("95", "25 cm");
-        DEPOSITION_DEPTH.put("96", "30 cm");
-        DEPOSITION_DEPTH.put("97", "35 cm");
-        DEPOSITION_DEPTH.put("98", "40 cm");
+        DEPOSITION_DEPTH_DICTIONARY.put("92", "10 cm");
+        DEPOSITION_DEPTH_DICTIONARY.put("93", "15 cm");
+        DEPOSITION_DEPTH_DICTIONARY.put("94", "20 cm");
+        DEPOSITION_DEPTH_DICTIONARY.put("95", "25 cm");
+        DEPOSITION_DEPTH_DICTIONARY.put("96", "30 cm");
+        DEPOSITION_DEPTH_DICTIONARY.put("97", "35 cm");
+        DEPOSITION_DEPTH_DICTIONARY.put("98", "40 cm");
 
-        FRICTION_FACTOR.put("91", "poor");
-        FRICTION_FACTOR.put("92", "medium/poor");
-        FRICTION_FACTOR.put("93", "medium");
-        FRICTION_FACTOR.put("94", "medium/good");
-        FRICTION_FACTOR.put("95", "good");
+        FRICTION_FACTOR_DICTIONARY.put("91", "breaking action is poor");
+        FRICTION_FACTOR_DICTIONARY.put("92", "breaking action is medium/poor");
+        FRICTION_FACTOR_DICTIONARY.put("93", "breaking action is medium");
+        FRICTION_FACTOR_DICTIONARY.put("94", "breaking action is medium/good");
+        FRICTION_FACTOR_DICTIONARY.put("95", "breaking action is good");
 
-        SPECIAL.put("R/SNOCLO", "runway(s) is(are) closed due to snow");
-        SPECIAL.put("R88", "all runways");
+        SPECIAL_DICTIONARY.put("R/SNOCLO", "runway(s) is(are) closed due to snow");
+        SPECIAL_DICTIONARY.put("R88", "all runways");
     }
 
     private final List<RunwayState> runwayStates = new ArrayList<>();
@@ -108,11 +108,11 @@ public class RunwayStateToken extends AbstractToken {
         private final String frictionFactor;
 
         public RunwayState(String runway, String deposition, String depositionDepth, String contamination, String frictionFactor) {
-            this.runway = StringUtil.nullableConverter(runway, r -> (SPECIAL.getOrDefault(r, r)));
-            this.deposition = StringUtil.nullableConverter(deposition, DEPOSITION::get);
-            this.depositionDepth = StringUtil.nullableConverter(depositionDepth, dd -> (DEPOSITION_DEPTH.getOrDefault(dd, dd + " mm")));
-            this.contamination = StringUtil.nullableConverter(contamination, CONTAMINATION::get);
-            this.frictionFactor = StringUtil.nullableConverter(frictionFactor, ff -> (FRICTION_FACTOR.getOrDefault(ff, "friction coefficient 0." + ff)));
+            this.runway = StringUtil.nullableConverter(runway, r -> (SPECIAL_DICTIONARY.getOrDefault(r, r.substring(1))), () -> "");
+            this.deposition = StringUtil.nullableConverter(deposition, DEPOSITION_DICTIONARY::get, () -> "");
+            this.depositionDepth = StringUtil.nullableConverter(depositionDepth, dd -> (DEPOSITION_DEPTH_DICTIONARY.getOrDefault(dd, dd + " mm")), () -> "");
+            this.contamination = StringUtil.nullableConverter(contamination, CONTAMINATION_DICTIONARY::get, () -> "");
+            this.frictionFactor = StringUtil.nullableConverter(frictionFactor, ff -> (FRICTION_FACTOR_DICTIONARY.getOrDefault(ff, "friction coefficient 0." + ff)), () -> "");
         }
 
         public final String getRunway() {

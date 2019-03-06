@@ -50,7 +50,7 @@ public class RunwayStateTokenTest extends AbstractTokenTest {
         assertThat(runwayStateToken.getRunwayStates())
                 .hasSize(1)
                 .extracting("runway", "deposition", "contamination", "depositionDepth", "frictionFactor")
-                .contains(tuple("R10L", "", "runway(s) is(are) non-operational due clearing", "", ""));
+                .contains(tuple("10L", "", "runway(s) is(are) non-operational due clearing", "", ""));
     }
 
     @Test
@@ -60,7 +60,7 @@ public class RunwayStateTokenTest extends AbstractTokenTest {
         assertThat(runwayStateToken.getRunwayStates())
                 .hasSize(1)
                 .extracting("runway", "deposition", "contamination", "depositionDepth", "frictionFactor")
-                .contains(tuple("R10L", "", "runway(s) is(are) cleared", "", ""));
+                .contains(tuple("10L", "", "runway(s) is(are) cleared", "", ""));
     }
 
     @Test
@@ -70,6 +70,6 @@ public class RunwayStateTokenTest extends AbstractTokenTest {
         assertThat(runwayStateToken.getRunwayStates())
                 .hasSize(1)
                 .extracting("runway", "deposition", "contamination", "depositionDepth", "frictionFactor")
-                .contains(tuple("R26C", "", "no information about runway state", "", ""));
+                .contains(tuple("26C", "", "no information about runway state", "", ""));
     }
 }
