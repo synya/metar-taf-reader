@@ -16,7 +16,7 @@ import static org.springframework.test.annotation.DirtiesContext.ClassMode.AFTER
 public class TrendTokenTest extends AbstractTokenTest {
 
     @Autowired
-    TrendToken trendToken;
+    private TrendToken trendToken;
 
     @Override
     protected Token getToken() {
