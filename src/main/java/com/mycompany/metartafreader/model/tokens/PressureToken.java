@@ -14,29 +14,29 @@ public class PressureToken extends AbstractToken {
 
     private final List<Pressure> pressures = new ArrayList<>();
 
-    public List<Pressure> getPressures() {
+    public final List<Pressure> getPressures() {
         return pressures;
     }
 
     @Override
-    public String toString() {
+    public final String toString() {
         return "PressureToken{" +
                 "pressures=" + pressures +
                 '}';
     }
 
     @Override
-    protected boolean mustBeJoinedBeforeDecode() {
+    protected final boolean mustBeJoinedBeforeDecode() {
         return false;
     }
 
     @Override
-    protected Matcher getMatcher(String input) {
+    protected final Matcher getMatcher(String input) {
         return PRESSURE.matcher(input);
     }
 
     @Override
-    protected void runDecode(String token) {
+    protected final void runDecode(String token) {
         Matcher matcher = PRESSURE.matcher(token);
         if (matcher.find()) {
             if (matcher.group("standard") != null) {
@@ -72,20 +72,20 @@ public class PressureToken extends AbstractToken {
             this.remark = remark;
         }
 
-        public String getPressure() {
+        public final String getPressure() {
             return pressure;
         }
 
-        public String getUnits() {
+        public final String getUnits() {
             return units;
         }
 
-        public String getRemark() {
+        public final String getRemark() {
             return remark;
         }
 
         @Override
-        public String toString() {
+        public final String toString() {
             return "Pressure{" +
                     "pressure='" + pressure + '\'' +
                     ", units='" + units + '\'' +
