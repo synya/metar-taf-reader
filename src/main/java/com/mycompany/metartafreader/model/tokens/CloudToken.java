@@ -11,10 +11,7 @@ import java.util.regex.Pattern;
 @Component
 public class CloudToken extends AbstractToken {
 
-    private static final int TYPE_GROUP_INDEX = 1;
-    private static final int FLIGHT_LEVEL_GROUP_INDEX = 2;
-    private static final int REMARK_GROUP_INDEX = 3;
-    private static final Pattern CLOUDS = Pattern.compile("^(NSC|NCD|FEW|SCT|BKN|OVC|VV)([0-9/]{3})?(CB|TCU|///)?$");
+    private static final Pattern CLOUDS = Pattern.compile("^(?<type>NSC|NCD|FEW|SCT|BKN|OVC|VV)(?<flightLevel>[0-9/]{3})?(?<remark>CB|TCU|///)?$");
 
     private static final Map<String, String> CLOUDS_DICTIONARY = new HashMap<>();
 
@@ -58,7 +55,7 @@ public class CloudToken extends AbstractToken {
     protected void runDecode(String token) {
         Matcher matcher = CLOUDS.matcher(token);
         if (matcher.find()) {
-            clouds.add(new Cloud(matcher.group(TYPE_GROUP_INDEX), matcher.group(FLIGHT_LEVEL_GROUP_INDEX), matcher.group(REMARK_GROUP_INDEX)));
+            clouds.add(new Cloud(matcher.group("type"), matcher.group("flightLevel"), matcher.group("remark")));
         }
     }
 
