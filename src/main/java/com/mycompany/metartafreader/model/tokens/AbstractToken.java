@@ -8,7 +8,7 @@ import java.util.regex.Matcher;
 
 public abstract class AbstractToken implements Token {
 
-    private List<String> tokenParts = new ArrayList<>();
+    private final List<String> tokenParts = new ArrayList<>();
 
     protected abstract Matcher getMatcher(String input);
 

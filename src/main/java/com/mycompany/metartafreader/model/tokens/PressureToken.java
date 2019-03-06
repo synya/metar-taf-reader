@@ -72,20 +72,20 @@ public class PressureToken extends AbstractToken {
             this.remark = remark;
         }
 
-        public final String getPressure() {
+        public String getPressure() {
             return pressure;
         }
 
-        public final String getUnits() {
+        public String getUnits() {
             return units;
         }
 
-        public final String getRemark() {
+        public String getRemark() {
             return remark;
         }
 
         @Override
-        public final String toString() {
+        public String toString() {
             return "Pressure{" +
                     "pressure='" + pressure + '\'' +
                     ", units='" + units + '\'' +

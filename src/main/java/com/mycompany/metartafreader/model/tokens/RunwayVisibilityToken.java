@@ -72,28 +72,28 @@ public class RunwayVisibilityToken extends AbstractToken {
             this.tendency = StringUtil.nullableConverter(tendency, RUNWAY_VISIBILITY_DICTIONARY::get);
         }
 
-        public final String getRunway() {
+        public String getRunway() {
             return runway;
         }
 
-        public final String getBound() {
+        public String getBound() {
             return bound;
         }
 
-        public final String getDistance() {
+        public String getDistance() {
             return distance;
         }
 
-        public final String getUnit() {
+        public String getUnit() {
             return unit;
         }
 
-        public final String getTendency() {
+        public String getTendency() {
             return tendency;
         }
 
         @Override
-        public final String toString() {
+        public String toString() {
             return "RunwayVisibility{" +
                     "runway='" + runway + '\'' +
                     ", bound='" + bound + '\'' +

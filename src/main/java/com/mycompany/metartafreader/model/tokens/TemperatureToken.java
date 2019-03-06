@@ -54,16 +54,16 @@ public class TemperatureToken extends AbstractToken {
             this.dewPoint = StringUtil.nullableConverter(dewPoint, dp -> dp.replace("M", "-"));
         }
 
-        public final String getTemperature() {
+        public String getTemperature() {
             return temperature;
         }
 
-        public final String getDewPoint() {
+        public String getDewPoint() {
             return dewPoint;
         }
 
         @Override
-        public final String toString() {
+        public String toString() {
             return "Temperature{" +
                     "temperature='" + temperature + '\'' +
                     ", dewPoint='" + dewPoint + '\'' +

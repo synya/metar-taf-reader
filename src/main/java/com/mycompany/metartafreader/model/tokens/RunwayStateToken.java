@@ -115,28 +115,28 @@ public class RunwayStateToken extends AbstractToken {
             this.frictionFactor = StringUtil.nullableConverter(frictionFactor, ff -> (FRICTION_FACTOR_DICTIONARY.getOrDefault(ff, "friction coefficient 0." + ff)));
         }
 
-        public final String getRunway() {
+        public String getRunway() {
             return runway;
         }
 
-        public final String getDeposition() {
+        public String getDeposition() {
             return deposition;
         }
 
-        public final String getDepositionDepth() {
+        public String getDepositionDepth() {
             return depositionDepth;
         }
 
-        public final String getContamination() {
+        public String getContamination() {
             return contamination;
         }
 
-        public final String getFrictionFactor() {
+        public String getFrictionFactor() {
             return frictionFactor;
         }
 
         @Override
-        public final String toString() {
+        public String toString() {
             return "RunwayState{" +
                     "runway='" + runway + '\'' +
                     ", deposition='" + deposition + '\'' +

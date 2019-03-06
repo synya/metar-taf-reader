@@ -64,19 +64,19 @@ public class ForecastTemperatureToken extends AbstractToken {
             this.remark = String.join(" ", this.extremum, "at:", TokenDateTimeUtil.format(dateTime));
         }
 
-        public final String getTemperature() {
+        public String getTemperature() {
             return temperature;
         }
 
-        public final String getExtremum() {
+        public String getExtremum() {
             return extremum;
         }
 
-        public final String getRemark() {
+        public String getRemark() {
             return remark;
         }
 
-        public final LocalDateTime getDateTime() {
+        public LocalDateTime getDateTime() {
             return dateTime;
         }
 

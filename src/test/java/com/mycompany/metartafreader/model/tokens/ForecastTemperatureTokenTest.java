@@ -1,6 +1,5 @@
 package com.mycompany.metartafreader.model.tokens;
 
-import com.mycompany.metartafreader.utils.TokenDateTimeUtil;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
