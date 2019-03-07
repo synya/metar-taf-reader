@@ -13,7 +13,7 @@ public class WindToken extends AbstractToken {
 
     private static final Pattern WIND = Pattern.compile("^(?<wind>(?<windDirection>[0-9]{3})(?<windSpeed>[0-9]{1,2})" +
             "(?<windGustsSpeed>G[0-9]{1,2})?(?<windSpeedUnit>MPS|KT|KMH))$|" +
-            "^(?<variableSlowWind>VRB(?<variableWindSpeed>([0-9]{2}))(?<variableWindSpeedUnit>MPS|KT|KMH))$|" +
+            "^(?<variableSlowWind>VRB(?<variableSlowWindSpeed>([0-9]{2}))(?<variableSlowWindSpeedUnit>MPS|KT|KMH))$|" +
             "^(?<variableHardWind>(?<variableHardWindDirection1>[0-9]{3})V(?<variableHardWindDirection2>[0-9]{3}))$");
 
     private static final Map<String, String> UNITS_DICTIONARY = new HashMap<>();
@@ -57,8 +57,8 @@ public class WindToken extends AbstractToken {
                         matcher.group("windSpeedUnit"), matcher.group("windDirection")));
             }
             if (matcher.group("variableSlowWind") != null) {
-                winds.add(new Wind(matcher.group("variableWindSpeed"), null,
-                        matcher.group("variableWindSpeedUnit"), "variable"));
+                winds.add(new Wind(matcher.group("variableSlowWindSpeed"), null,
+                        matcher.group("variableSlowWindSpeedUnit"), "variable"));
             }
             if (matcher.group("variableHardWind") != null) {
                 winds.add(new Wind(null, null, null,
