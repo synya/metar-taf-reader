@@ -11,12 +11,12 @@ public final class TokenDateTimeUtil {
     }
 
     public static LocalDateTime parseDayHour(String dayHour) {
-        return of(Integer.valueOf(dayHour.substring(0, 2)), Integer.valueOf(dayHour.substring(2, 4)), 0);
+        return of(Integer.parseInt(dayHour.substring(0, 2)), Integer.parseInt(dayHour.substring(2, 4)), 0);
     }
 
     public static LocalDateTime parseDayHourMinute(String dayHourMinute) {
-        return of(Integer.valueOf(dayHourMinute.substring(0, 2)), Integer.valueOf(dayHourMinute.substring(2, 4)),
-                Integer.valueOf(dayHourMinute.substring(4, 6)));
+        return of(Integer.parseInt(dayHourMinute.substring(0, 2)), Integer.parseInt(dayHourMinute.substring(2, 4)),
+                Integer.parseInt(dayHourMinute.substring(4, 6)));
     }
 
     public static String format(LocalDateTime localDateTime) {
